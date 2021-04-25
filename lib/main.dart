@@ -58,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Icon(Icons.person),
         title: Text(
           'Profile',
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          style: TextStyle(
+              color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
       backgroundColor: Colors.grey[900],
