@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'DSC Task 1',
+      title: 'DSC Task 2',
       home: MyHomePage(),
     );
   }
@@ -24,20 +24,44 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Widget blockOfWidgets(String text, double _width) {
-    return Column(
+  Widget blockOfWidgets(
+      String text, double _width, Color _color, Color _color2, int index) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        SizedBox(
-          height: 3,
+        Column(
+          children: [
+            Container(
+              width: _width,
+              height: _width,
+              color: _color,
+            ),
+            SizedBox(
+              height: 3,
+            ),
+            Text(
+              text + ' $index',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-        Text(
-          text,
-          style: TextStyle(color: Colors.white, fontSize: 16),
-        ),
-        Container(
-          width: _width,
-          height: 10,
-          color: Colors.blueGrey[200],
+        Column(
+          children: [
+            Container(
+              width: _width,
+              height: _width,
+              color: _color2,
+            ),
+            SizedBox(
+              height: 3,
+            ),
+            Text(
+              text + ' ' + (++index).toString(),
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ],
     );
@@ -51,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -64,21 +88,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       backgroundColor: Colors.grey[900],
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.brown[200],
-          ),
-          blockOfWidgets('Name:....', screenSize.width),
-          blockOfWidgets('Age:....', screenSize.width),
-          blockOfWidgets('Education:....', screenSize.width),
-          SizedBox(
-            height: 3,
-          ),
-          Text('Address:....',
-              style: TextStyle(color: Colors.white, fontSize: 16)),
+          blockOfWidgets('Container ', 150, Colors.blueAccent, Colors.white, 1),
+          blockOfWidgets('Container ', 150, Colors.redAccent, Colors.amber, 3),
+          blockOfWidgets(
+              'Container ', 150, Colors.greenAccent, Colors.yellowAccent, 5),
         ],
       ),
     );
